@@ -1,0 +1,40 @@
+.sidebar__main {
+    background-color: #FFFFFF;
+    display: flex;
+    row-gap: 16px;
+    /* Take the remaining width */
+    flex: 1;
+
+    /* Make it scrollable */
+    overflow: auto;
+}
+
+.row_film {
+    display: flex;
+    padding: 24px;
+    column-gap: 24px;
+}
+
+.post img {
+    border-radius: 8px;
+
+}
+.film_info {
+    display: flex;
+    flex-direction: column;
+    row-gap: 8px;
+}
+
+.film_name {
+    font-weight: 600px;
+    font-size: 20px;
+    line-height: 20px;
+    color: #1b1f23;
+}
+.film_genre {
+    font-weight: 400px;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 20px;
+    color: #1b1f23;
+}

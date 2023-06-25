@@ -1,0 +1,42 @@
+.main_content{
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+
+}
+.main_content_title{
+    padding: 24px;
+    height: 80px;
+    background-color: burlywood;
+    font-weight: 600px;
+    font-size: 32px;
+    line-height: 32px;
+}
+
+.main_content_wrapper{
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    background-color: burlywood;
+}
+.main_content{
+    font-weight: 600px;
+    font-size: 24px;
+    line-height: 32px;
+    height: 80px;
+}
+.dropList{
+    position: relative;
+    vertical-align: middle;
+
+    height: 50px;
+    width: 50px;
+    border-color: rgb(98, 173, 23);
+}
+.drop_icon{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+}

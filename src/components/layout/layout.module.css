@@ -1,0 +1,64 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.sticky_header__header {
+  /* Stick to the top */
+  position: sticky;
+  z-index: 99;
+  top: 0;
+  height: 84px;
+  background-color: #333333;
+  max-width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main {
+  flex-grow: 1;
+  padding: 24px;
+  background-color: #ffffff;
+}
+
+.tickets {
+  width: 241px;
+  height: 36px;
+  line-height: 37.5px;
+
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 32px;
+}
+.cart {
+  position: relative;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+}
+.icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.sticky_footer__footer {
+  /* Stick to the top */
+  height: 86px;
+  background-color: #333333;
+  max-width: 100%;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sticky_footer__footer_ask {
+  color: #ffffff;
+  font-weight: 400px;
+  font-size: 20px;
+  line-height: 23.44px;
+}
