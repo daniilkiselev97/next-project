@@ -8,12 +8,17 @@ const FilmChanger = ({ id }) => {
     const [qty, setqty] = useState(cart[id] || 0);
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify({ [id]: qty }));
+        let prevCart = JSON.parse(localStorage.getItem('cart') || '{}');
+        localStorage.setItem(
+            'cart',
+            JSON.stringify({ ...prevCart, [id]: qty })
+        );
     }, [qty]);
 
     return (
         <div className={styles.buttons_wrap}>
             <button
+                disabled={qty === 0}
                 onClick={() => setqty((qty) => qty - 1)}
                 className={styles.button}
             >
@@ -21,6 +26,7 @@ const FilmChanger = ({ id }) => {
             </button>
             <div className={styles.number}>{qty}</div>
             <button
+                disabled={qty === 30}
                 onClick={() => setqty((qty) => qty + 1)}
                 className={styles.button}
             >

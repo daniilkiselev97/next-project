@@ -11,7 +11,6 @@ const   FilmsRows =  ({films}) =>{
         
         <div>
          { Boolean(films.length) && films.map((film)=>(
-            <Link href={`film?id=${film.id}`}>
                    <FilmRow
                    key={film.id}
                    title={film.title}
@@ -19,7 +18,6 @@ const   FilmsRows =  ({films}) =>{
                    posterUrl = {film.posterUrl}
                    id = {film.id}
                    />
-            </Link>
                 )
                 )}
         </div>
