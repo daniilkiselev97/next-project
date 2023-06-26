@@ -1,0 +1,60 @@
+.main_film_page{
+    /* padding: 24px; */
+    display: flex;
+    flex-direction: column;
+    row-gap: 24px;
+    padding-left: 24px;
+}
+.main_film_info{
+    display: flex;
+    column-gap: 32px;
+    padding-top: 29px;
+
+}
+.main_film_info_poster{
+    flex-shrink: 0;
+    width: 400px;
+    height: 500px;
+    border-radius: 8px;
+}
+
+.main_film_desciption_title{
+    font-weight: 600px;
+    font-size: 32px;
+    line-height: 32px;
+    color: #1B1F23;
+    margin-bottom: 24px;
+}
+.main_film_gen_rel_rat_aut > *{
+    margin-bottom: 16px;
+}
+.main_film_gen_rel_rat_aut :last-child{
+    margin-bottom: 0px;
+}
+.subinfo{
+    font-weight: 600px;
+    font-size: 20px;
+    line-height: 24px;
+    color: #1B1F23;
+
+}
+.subinfosp {
+    font-weight: 400px;
+}
+.main_film_main_description{
+    margin-top: 32px;
+}
+.main_film_main_desc_title{
+    font-weight: 600px;
+    font-size: 20px;
+    line-height: 32px;
+    color: #1B1F23;
+    margin-bottom: 16px;
+
+}
+.main_film_main_desc_paragraphs{
+    font-weight: 400px;
+    font-size: 16px;
+    line-height: 24px;
+
+}

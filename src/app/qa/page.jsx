@@ -4,6 +4,7 @@ import qs from "./page.module.css";
 import Layout from "../../components/layout/layout";
 
 export default function QuestAns() {
+
   return (
     <Layout>
       <main className={classNames(qs.main_content)}>

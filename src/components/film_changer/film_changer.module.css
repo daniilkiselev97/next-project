@@ -1,0 +1,25 @@
+.buttons_wrap{
+    display: flex;
+    column-gap: 8px;
+    align-items: center;
+}
+.button{
+    display: flex;
+    align-items: center;
+    border: none;
+    justify-content: center;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    background-color: #FF5500;
+
+}
+.number{
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 20px;
+    color: #1B1F23;
+
+
+}

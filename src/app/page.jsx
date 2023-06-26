@@ -4,32 +4,40 @@ import styles from './page.module.css';
 import Layout from '../components/layout/layout';
 import classNames from 'classnames';
 import FilmsRows from '../components/film_rows/film_rows';
-import { useEffect, useState, useRef} from 'react';
-import DropDrop_List_Genre from '../components/drop_list_genre/drop_list_genre';
+import { useEffect, useState, useRouter } from 'react';
+import Drop_List_Genre from '../components/drop_list_genre/drop_list_genre';
 import Drop_List_Films from './../components/drop_list_cinemas/drop_list_cinemas';
 
 export default function Home() {
+
+    
+    
     const [isOnListGenre, setIsOnListGenre] = useState(false);
     const [isOnListCinemas, setIsOnListCinemas] = useState(false);
 
-    const [searchTerm, setSearchTerm] = useState(''); 
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchGenre, setSearchGenre] = useState('');
+    const [searchCinema, setSearchCinema] = useState('');
 
-    const [movie, setMovie] = useState(null);
-
-
+    const [movies, setMovies] = useState([]);
+    const [cinemas, setCinemas] = useState([])
+    const [filteredMovies, setFilteredMovies] = useState([]);
 
     useEffect(() => {
-        let cleanupFunction = false;
+        // let cleanupFunction = false;
+        
+        
+
         const fetchData = async () => {
             try {
                 const response = await fetch(
                     'http://localhost:3001/api/movies'
                 );
                 const result = await response.json();
-                setMovie(result);
+                setMovies(result);
 
                 // непосредственное обновление состояния при условии, что компонент не размонтирован
-                if (!cleanupFunction) setMovie(result);
+                // if (!cleanupFunction) setMovies(result);
             } catch (e) {
                 console.error(e.message);
             }
@@ -37,39 +45,51 @@ export default function Home() {
 
         fetchData();
 
-        const filterFilms =  (searchText, listOfFilms) => {
-            console.log(searchText, listOfFilms)
-            if (!searchText) {
-                return listOfFilms;
-            }
-            return listOfFilms.filter((listOfFilm) => {
-                
-                return listOfFilm.title.toLowerCase().includes(searchText.toLowerCase());
-                
-            });
-        };
         
-        if (Boolean(searchTerm.trim()) && Boolean(movie)) {
-            
-            
-        const newFilms = filterFilms(searchTerm, movie);
-        setMovie(newFilms)
-
-
-        }
-
-
         // функция очистки useEffect
-        return () => (cleanupFunction = true);
-    }, [searchTerm]);
+        // return () => (cleanupFunction = true);
+    }, []);
 
-    
+    useEffect(() => {
+        // let cleanupFunction = false;
+        const fetchData = async () => {
+            try {
+                const response = await fetch(
+                    'http://localhost:3001/api/cinemas'
+                );
+                const result = await response.json();
+                setCinemas(result);
+
+                // непосредственное обновление состояния при условии, что компонент не размонтирован
+                // if (!cleanupFunction) setMovies(result);
+            } catch (e) {
+                console.error(e.message);
+            }
+        };
+
+        fetchData();
+        // функция очистки useEffect
+        // return () => (cleanupFunction = true);
+    }, []);
 
 
+    useEffect(() => {
 
-    
+        const filtMov = movies.filter((movie) => {
+            const hitByGenre = searchGenre ? movie.genre === searchGenre : true
+            const hitByName = searchTerm ? movie.title.toLowerCase().includes(searchTerm.toLowerCase())  : true
+            const hitByCinema = searchCinema? cinemas.some((item)=>{
+                if((item.movieIds.includes(movie.id)) ){
+                    return item.name === searchCinema
+                }
+            })  : true
 
+            return hitByGenre && hitByName && hitByCinema
+        });
+        setFilteredMovies(filtMov);
 
+       
+    }, [searchTerm, searchGenre, searchCinema, movies]);
 
     return (
         <Layout>
@@ -89,6 +109,8 @@ export default function Home() {
                                 placeholder="Введите название"
                                 type="text"
                                 onChange={(e) => setSearchTerm(e.target.value)}
+                                value={searchTerm}
+                                
                             />
                         </label>
 
@@ -101,8 +123,19 @@ export default function Home() {
                                     className={classNames(styles.search_input)}
                                     placeholder="Выберите жанр"
                                     type="text"
+                                    value={searchGenre}
+                                    onChange={(e) => setSearchGenre(e.target.value)}
+
+
                                 />
-                                {isOnListGenre && <DropDrop_List_Genre />}
+                                {isOnListGenre && (
+                                    <Drop_List_Genre
+                                        onChange={setSearchGenre}
+                                        isOnListGenre={isOnListGenre}
+                                        setIsOnListGenre={setIsOnListGenre}
+
+                                    />
+                                )}
 
                                 <button
                                     onClick={() =>
@@ -132,8 +165,17 @@ export default function Home() {
                                     className={classNames(styles.search_input)}
                                     placeholder="Выберите кинотеатр"
                                     type="text"
+                                    value={searchCinema}
+                                    onChange={(e)=>setSearchCinema(e.target.value)}
                                 />
-                                {isOnListCinemas && <Drop_List_Films />}
+                                {isOnListCinemas && (
+                                    <Drop_List_Films
+                                        onChange={setSearchCinema}
+                                        isOnListCinemas={isOnListCinemas}
+                                        setIsOnListCinemas={setIsOnListCinemas}
+
+                                    />
+                                )}
 
                                 <button
                                     onClick={() =>
@@ -156,7 +198,7 @@ export default function Home() {
                     </div>
                 </aside>
                 <div className={classNames(styles.sidebar__main)}>
-                    {Boolean(movie) && <FilmsRows films={movie} />}
+                    {<FilmsRows films={filteredMovies} />}
                 </div>
             </div>
         </Layout>
