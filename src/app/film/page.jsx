@@ -13,6 +13,7 @@ const FilmPage = () => {
 
     const [reviews, setReviews] = useState('')
 
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,6 +32,9 @@ const FilmPage = () => {
 
     useEffect(()=>{
         const fetchData = async () => {
+
+    // console.log(reviews)
+
             try {
                 const response = await fetch(
                     `http://localhost:3001/api/reviews?movieId=${query.get('id')}`
@@ -52,7 +56,7 @@ const FilmPage = () => {
                 <div className={styles.main_film_page}>
                     <div className={styles.main_film_info}>
                         <div className={styles.main_film_info_poster}>
-                        <Image
+                        <Image className={styles.main_film_info_poster_img}
                             src={film.posterUrl}
                             width={400}
                             height={500}

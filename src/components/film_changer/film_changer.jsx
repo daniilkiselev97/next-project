@@ -3,6 +3,8 @@ import styles from './film_changer.module.css';
 import { useEffect, useState } from 'react';
 
 const FilmChanger = ({ id }) => {
+
+
     const cart = JSON.parse(localStorage.getItem('cart') || '{}');
 
     const [qty, setqty] = useState(cart[id] || 0);
@@ -32,6 +34,7 @@ const FilmChanger = ({ id }) => {
             >
                 <Image src="/plus.svg" width={12} height={12} alt="" />
             </button>
+            
         </div>
     );
 };

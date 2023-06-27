@@ -11,11 +11,17 @@
     padding-top: 29px;
 
 }
-.main_film_info_poster{
+.main_film_info_poster_img{
+    object-fit: cover;
+    border-radius: 8px;
+
+}
+
+.main_film_info_poster {
     flex-shrink: 0;
     width: 400px;
     height: 500px;
-    border-radius: 8px;
+    
 }
 
 .main_film_desciption_title{
@@ -53,6 +59,7 @@
 
 }
 .main_film_main_desc_paragraphs{
+    color: #1B1F23;
     font-weight: 400px;
     font-size: 16px;
     line-height: 24px;
